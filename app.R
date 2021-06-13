@@ -1,6 +1,6 @@
-library(tidyverse)
-library(googlesheets4)
-library(googledrive)
+suppressPackageStartupMessages(library(tidyverse))
+suppressPackageStartupMessages(library(googlesheets4))
+suppressPackageStartupMessages(library(googledrive))
 
 Sys.setenv(TZ="America/Los_Angeles")
 
