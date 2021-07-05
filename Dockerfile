@@ -1,6 +1,6 @@
 FROM rocker/tidyverse:4.1.0
 
-RUN R -e "install.packages(c('tidyverse', 'googlesheets4', 'googledrive'), repos = 'http://cran.us.r-project.org')"
+RUN R -e "install.packages(c('dplyr', 'googlesheets4', 'googledrive', 'gmailr', 'DBI', 'RMySQL'), repos = 'http://cran.us.r-project.org')"
 
 COPY . .
 
