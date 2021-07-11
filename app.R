@@ -43,7 +43,7 @@ test_email <-
   gm_mime() %>%
   gm_to(jacobs_email) %>%
   gm_from(jacobs_email) %>%
-  gm_subject("this is just a gmailr test") %>%
+  gm_subject("this is just a gmailr test from Docker") %>%
   gm_html_body("Can you hear me now? <br> <br>
                <a href = 'https://docs.google.com/spreadsheets/d/1iVCGoVT6JsuRnNY7sR38e_yZxVOQZLZibmbeNGeyJgU/edit#gid=0'> </a>")
 
