@@ -57,9 +57,6 @@ gm_send_message(test_email)
 log_info(paste0('Sending Gmail Update to ', jacobs_email))
 log_info('Exiting Out...')
 
-df <- as.data.frame(readLines(t)) %>%
-  separate()
-
 sheet_append(data = as.data.frame(readLines(t)), 
              ss = 'https://docs.google.com/spreadsheets/d/1iVCGoVT6JsuRnNY7sR38e_yZxVOQZLZibmbeNGeyJgU/edit#gid=0',
              sheet = 4)
