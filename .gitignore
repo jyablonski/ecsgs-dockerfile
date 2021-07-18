@@ -30,3 +30,4 @@ vignettes/*.pdf
 *.Rproj
 /Key
 .secret
+app.log
