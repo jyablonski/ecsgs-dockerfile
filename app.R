@@ -5,6 +5,7 @@ suppressPackageStartupMessages(library(gmailr))
 suppressPackageStartupMessages(library(DBI))
 suppressPackageStartupMessages(library(logger))
 
+
 t <- tempfile()
 log_appender(appender_file(t))
 log_info('Starting Script...')
