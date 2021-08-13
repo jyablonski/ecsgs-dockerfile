@@ -23,6 +23,7 @@ connection_function <- function(){
 }
 connection_function()
 
+
 aws_connect <- dbConnect(drv = RMySQL::MySQL(), dbname = aws_db,
                          host = aws_host,
                          port = aws_port,
