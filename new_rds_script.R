@@ -28,3 +28,10 @@ dbListTables(aws_connect)
 
 
 odds_rds <- dbReadTable(aws_connect, 'aws_odds_df')
+transactions_rds <- dbReadTable(aws_connect, 'transactions')
+
+dbRemoveTable(aws_connect, "df")
+dbRemoveTable(aws_connect, 'transactions')
+
+dbListTables(aws_connect)
+
