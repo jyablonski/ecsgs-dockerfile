@@ -24,7 +24,7 @@ connection_function <- function(){
 connection_function()
 
 
-aws_connect <- dbConnect(drv = RMySQL::MySQL(), dbname = aws_db,
+aws_connect <- dbConnect(drv = RMariaDB::MariaDB(), dbname = aws_db,
                          host = aws_host,
                          port = aws_port,
                          user = aws_user, password = aws_pw)
