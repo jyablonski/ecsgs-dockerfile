@@ -26,12 +26,26 @@ dbWriteTable(aws_connect, name = "aws_odds_df", value = odds, append = FALSE, ov
 
 dbListTables(aws_connect)
 
+# use get query for select statements, sendquery for create db ?
+# 2021-09-14 update: dbt worked!
+df <- dbGetQuery(aws_connect, 'SELECT * FROM my_first_dbt_model;')
 
 odds_rds <- dbReadTable(aws_connect, 'aws_odds_df')
 transactions_rds <- dbReadTable(aws_connect, 'transactions')
+df <- dbReadTable(aws_connect, 'pbp_prac')
+
+str(df)
+df2 <- df %>%
+  mutate_at(vars(AwayScore, Score, HomeScore), ~str_replace_all(., "Jump ball", ""))
+
+df2 <- df %>%
+  mutate(AwayScore2 = case_when(str_detect(AwayScore, "Jump ball") ~ "",
+                                str_detect(AwayScore, "quarter") ~ "",
+                                TRUE ~ AwayScore),
+         AwayScore2 = is.numeric(AwayScore2))
 
 dbRemoveTable(aws_connect, "df")
-dbRemoveTable(aws_connect, 'transactions')
+dbRemoveTable(aws_connect, 'aws_injury_data_table')
 
 dbListTables(aws_connect)
 
