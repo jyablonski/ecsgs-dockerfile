@@ -5,6 +5,8 @@ suppressPackageStartupMessages(library(gmailr))
 suppressPackageStartupMessages(library(DBI))
 suppressPackageStartupMessages(library(logger))
 suppressPackageStartupMessages(library(pool))
+suppressPackageStartupMessages(library(bigrquery))
+
 
 aws_connect <- dbConnect(drv = RMariaDB::MariaDB(), dbname = aws_db,
                          host = aws_host,
@@ -28,7 +30,13 @@ dbListTables(aws_connect)
 
 # use get query for select statements, sendquery for create db ?
 # 2021-09-14 update: dbt worked!
-df <- dbGetQuery(aws_connect, 'SELECT * FROM my_first_dbt_model;')
+df <- dbGetQuery(aws_connect, 'SELECT * FROM my_real_table;')
+df2 <- dbGetQuery(aws_connect, 'SELECT * FROM my_second_dbt_model;')
+df3 <- dbGetQuery(aws_connect, 'SELECT * FROM my_third_dbt_model;')
+
+df <- dbGetQuery(aws_connect, 'SELECT * FROM v_my_second_dbt_model;')
+df2 <- dbGetQuery(aws_connect, 'SELECT * FROM v_my_fourth_dbt_model;')
+df3 <- dbGetQuery(aws_connect, 'SELECT * FROM my_third_dbt_model;')
 
 odds_rds <- dbReadTable(aws_connect, 'aws_odds_df')
 transactions_rds <- dbReadTable(aws_connect, 'transactions')
@@ -49,3 +57,17 @@ dbRemoveTable(aws_connect, 'aws_injury_data_table')
 
 dbListTables(aws_connect)
 
+
+#### 3big query
+
+# set this in .rprofile
+#bigrquery::bq_auth(path = 'key/bigquery_python_key.json')
+
+con <- dbConnect(
+  bigrquery::bigquery(),
+  project = "docker-ecs-r-project", # the database
+  dataset = "dbt_jyablonski"        # the schema
+)
+
+dbListTables(con)
+dbGetQuery(con, 'SELECT * FROM fct_orders;')
