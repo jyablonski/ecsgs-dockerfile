@@ -61,7 +61,7 @@ dbListTables(aws_connect)
 #### 3big query
 
 # set this in .rprofile
-#bigrquery::bq_auth(path = 'key/bigquery_python_key.json')
+# bigrquery::bq_auth(path = 'key/bigquery_python_key.json')
 
 con <- dbConnect(
   bigrquery::bigquery(),
